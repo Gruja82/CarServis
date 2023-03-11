@@ -1,0 +1,67 @@
+﻿@model CarViewModel
+
+@{
+    HashSet<string> customers = new();
+    customers = (HashSet<string>)ViewData["Customers"];
+    HashSet<string> makes = ViewData["Makes"] as HashSet<string>;
+}
+
+<h3 class="text-center">New Car</h3>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <img width="200" height="200" id="imgElement" asp-append-version="true" />
+            </div>
+            <div class="form-group">
+                <input type="file" asp-for="Image" class="form-control" id="inputElement" onchange="setSrc()" />
+            </div>
+            <div class="form-group">
+                <label>Code</label>
+                <input asp-for="Code" class="form-control" />
+                <span asp-validation-for="Code" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Code</label>
+                <input asp-for="Code" class="form-control" />
+                <span asp-validation-for="Code" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Make</label>
+                <select asp-for="Make" class="form-control">
+                    @foreach (var make in makes)
+                    {
+                        <option>@make</option>
+                    }
+                </select>
+                <span asp-validation-for="Make" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Model</label>
+                <input asp-for="Model" class="form-control" />
+                <span asp-validation-for="Model" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Year Produced</label>
+                <input asp-for="Year" class="form-control" />
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Customer</label>
+                <select asp-for="Customer" class="form-control">
+                    @foreach (var customer in customers)
+                    {
+                        <option>@customer</option>
+                    }
+                </select>
+                <span asp-validation-for="Customer" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-4">
+                <input type="submit" class="btn btn-primary" value="Create" />
+            </div>
+        </form>
+    </div>
+</div>

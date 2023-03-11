@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <div class="flex-column">
+        <a asp-controller="Car" asp-action="Index" class="m-2">
+            <img src="~/Images/Home/istockphoto-509682099-612x612.jpg" alt="Cars" width="300" height="300" />
+        </a>
+        <a asp-controller="Part" asp-action="Index" class="m-2">
+            <img src="~/Images/Home/istockphoto-1212230930-612x612.jpg" alt="Parts" width="300" height="300" />
+        </a>
+        <a asp-controller="Customer" asp-action="Index" class="m-2">
+            <img src="~/Images/Home/businessman-2606506_960_720.jpg" alt="Customers" width="300" height="300" />
+        </a>
+    </div>
+    <div class="flex-column mt-2">
+        <a asp-controller="Make" asp-action="Index" class="m-2">
+            <img src="~/Images/Home/maxresdefault.jpg" alt="Cars" width="300" height="300" />
+        </a>
+        <a asp-controller="Repair" asp-action="Index" class="m-2">
+            <img src="~/Images/Home/istockphoto-1165311626-612x612.jpg" alt="Cars" width="300" height="300" />
+        </a>
+    </div>
+</div>

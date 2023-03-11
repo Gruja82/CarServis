@@ -1,0 +1,69 @@
+﻿@model Pagination<MakeViewModel>
+
+<h3 class="text-center">Makes</h3>
+
+<div class="text-lg-end">
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</div>
+
+<div>
+    <form asp-action="Index" method="post" enctype="multipart/form-data">
+        <div>
+            <p>
+                <input type="text" name="searchText" placeholder="Code--Name" />
+                <button type="submit" class="btn btn-outline-dark">Search</button>
+            </p>
+
+            <table class="table table-striped table-light">
+                <thead class="text-dark">
+                    <tr>
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th>Country</th>
+                        <th>Image</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var make in Model.DataSet)
+                    {
+                        <tr>
+                            <td>@make.Code</td>
+                            <td>@make.Name</td>
+                            <td>@make.Country</td>
+                            <td>
+                                <img src="~/Images/Makes/@make.ImageUrl" width="100" height="100" asp-append-version="true" />
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-Id="@make.Id" class="btn btn-primary">Edit</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div class="container m-3">
+                @for (int i = 1; i <= Model.PageCount; i++)
+                {
+                    @if (i != Model.PageIndex)
+                    {
+                        <input type="submit" name="pageIndex" class="btn btn-outline-info" value="@i" />
+                    }
+                    else
+                    {
+                        <span class="btn btn-info">@i</span>
+                    }
+                }
+
+                Items per page:
+                <select asp-for="PageSize">
+                    @for (int i = 1; i <= 15; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+                <input type="submit" class="btn btn-secondary" value="Confirm" />
+            </div>
+        </div>
+    </form>
+</div>
